@@ -1,0 +1,6 @@
+{
+  "name": "ModalDanger",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./ModalDanger.js"
+}
