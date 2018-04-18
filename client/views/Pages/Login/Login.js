@@ -62,11 +62,13 @@ class Login extends Component {
     let passwordRequired = (this.state.password.length === 0 && this.state.formSubmited);
     let loginError = (this.state.loginFailure && this.state.formSubmited);
 
-    let showError;
-    if(loginError) {
-      showError = <ModalDanger toggleShow={this.toggleShow} show={this.state.showError} title="Autenticação" msg="Ops...Parece que você digitou algo errado."/>
-      
+    let divError;
+    if(emailRequired || passwordRequired) {
+      divError = <ModalDanger type="danger" toggleShow={this.toggleShow} show={this.state.showError} title="Campos Obrigatórios" msg="Usuário e senha são campos obrigatórios."/>
+    } else if(loginError) {
+      divError = <ModalDanger type="danger" toggleShow={this.toggleShow} show={this.state.showError} title="Autenticação" msg="Ops...Usuário e/ou senha inválidos."/>
     }
+    
     return (
       <div className="app flex-row align-items-center">
         <div className="container">
@@ -75,7 +77,7 @@ class Login extends Component {
               <div className="card-group mb-0">
                 <div className="card p-4">
                   <div className="card-block">
-                    {showError}     
+                    {divError}
                     <h1>Entrar</h1>
                     <p className="text-muted">Faça login em sua conta</p>
                     <div className={emailRequired ? "input-group mb-3 has-danger has-feedback" : "input-group mb-3"}>
