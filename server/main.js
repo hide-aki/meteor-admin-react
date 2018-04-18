@@ -9,10 +9,10 @@ Meteor.startup(() => {
   //Criação da conta
   Accounts.emailTemplates.enrollAccount = {
     subject(user) {
-       return `${user.profile.name}, bem-vindo ao Sistema!`
+       return `${user.profile.username}, bem-vindo ao Sistema!`
     },
     text(user, url) {
-       return `Olá ${user.profile.name}! Para ativar sua conta, basta copiar e colar na barra de endereços este link : ${url}`;
+       return `Olá ${user.profile.username}! Para ativar sua conta, basta copiar e colar na barra de endereços este link : ${url}`;
     }
   };
 
@@ -22,7 +22,7 @@ Meteor.startup(() => {
        return "Validação de email";
     },
     text(user, url) {
-       return `Olá ${user.profile.name}! Para confirmar seu email, basta copiar e colar na barra de endereços este link : ${url}`;
+       return `Olá ${user.profile.username}! Para confirmar seu email, basta copiar e colar na barra de endereços este link : ${url}`;
     }
   };
 
@@ -32,7 +32,7 @@ Meteor.startup(() => {
        return "Sistema - Password Reset";
     },
     text(user, url) {
-       return `Olá ${user.profile.name}! Para resetar sua senha, basta copiar e colar na barra de endereços este link : ${url}`;
+       return `Olá ${user.profile.username}! Para resetar sua senha, basta copiar e colar na barra de endereços este link : ${url}`;
     }
   };
 
