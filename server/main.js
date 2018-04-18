@@ -5,7 +5,11 @@ Meteor.startup(() => {
 
   Accounts.emailTemplates.siteName = 'Sistema';
   Accounts.emailTemplates.from = 'Sistema <danielpinna2@gmail.com>';
-
+  Accounts.config({ 
+    loginExpirationInDays: 0.01, 
+    sendVerificationEmail: true
+  });
+  
   //Criação da conta
   Accounts.emailTemplates.enrollAccount = {
     subject(user) {
