@@ -48,6 +48,7 @@ const Full = appProps => (
             <Authenticated path="/icons/simple-line-icons" name="Simple Line Icons" component={SimpleLineIcons} {...appProps}/>
             <Authenticated path="/widgets" name="Widgets" component={Widgets} {...appProps}/>
             <Authenticated path="/charts" name="Charts" component={Charts} {...appProps}/>
+            <Redirect from="/" to="/login"/>
           </Switch>
         </div>
       </main>
