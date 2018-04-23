@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Bar, Line } from 'react-chartjs-2';
 import { Dropdown, DropdownMenu, DropdownItem, Progress } from 'reactstrap';
+import { Meteor } from 'meteor/meteor';
 
 const brandPrimary =  '#20a8d8';
 const brandSuccess =  '#4dbd74';

@@ -1,15 +1,23 @@
 import React, { Component } from 'react';
 import { Dropdown, DropdownMenu, DropdownItem } from 'reactstrap';
+import { Meteor } from 'meteor/meteor';
 
 class Header extends Component {
 
   constructor(props) {
     super(props);
 
+    this.logout = this.logout.bind(this);
     this.toggle = this.toggle.bind(this);
+    
     this.state = {
       dropdownOpen: false
     };
+  }
+
+  logout(e) {
+    e.preventDefault();
+    Meteor.logout();
   }
 
   toggle() {
@@ -90,7 +98,7 @@ class Header extends Component {
                 <DropdownItem><i className="fa fa-file"></i> Projects<span className="badge badge-primary">42</span></DropdownItem>
                 <DropdownItem divider />
                 <DropdownItem><i className="fa fa-shield"></i> Lock Account</DropdownItem>
-                <DropdownItem><i className="fa fa-lock"></i> Logout</DropdownItem>
+                <DropdownItem onClick={this.logout} ><i className="fa fa-lock"></i> Logout</DropdownItem>
 
               </DropdownMenu>
             </Dropdown>

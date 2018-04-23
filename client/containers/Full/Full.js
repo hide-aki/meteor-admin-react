@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Link, Switch, Route, Redirect } from 'react-router-dom'
 import Header from '../../components/Header/';
 import Sidebar from '../../components/Sidebar/';
 import Breadcrumb from '../../components/Breadcrumb/';
 import Aside from '../../components/Aside/';
 import Footer from '../../components/Footer/';
+
+import { composeWithTracker } from 'react-komposer';
+import { Meteor } from 'meteor/meteor';
+import Authenticated from '../../views/Pages/Authenticated';
 
 import Dashboard from '../../views/Dashboard/'
 import Charts from '../../views/Charts/'
@@ -20,40 +25,49 @@ import Tabs from '../../views/Components/Tabs/'
 import FontAwesome from '../../views/Icons/FontAwesome/'
 import SimpleLineIcons from '../../views/Icons/SimpleLineIcons/'
 
-class Full extends Component {
-  render() {
-    return (
-      <div className="app">
-        <Header />
-        <div className="app-body">
-          <Sidebar {...this.props}/>
-          <main className="main">
-            <Breadcrumb />
-            <div className="container-fluid">
-              <Switch>
-                <Route path="/dashboard" name="Dashboard" component={Dashboard}/>
-                <Route path="/components/buttons" name="Buttons" component={Buttons}/>
-                <Route path="/components/cards" name="Cards" component={Cards}/>
-                <Route path="/components/forms" name="Forms" component={Forms}/>
-                <Route path="/components/modals" name="Modals" component={Modals}/>
-                <Route path="/components/social-buttons" name="Social Buttons" component={SocialButtons}/>
-                <Route path="/components/switches" name="Swithces" component={Switches}/>
-                <Route path="/components/tables" name="Tables" component={Tables}/>
-                <Route path="/components/tabs" name="Tabs" component={Tabs}/>
-                <Route path="/icons/font-awesome" name="Font Awesome" component={FontAwesome}/>
-                <Route path="/icons/simple-line-icons" name="Simple Line Icons" component={SimpleLineIcons}/>
-                <Route path="/widgets" name="Widgets" component={Widgets}/>
-                <Route path="/charts" name="Charts" component={Charts}/>
-                <Redirect from="/" to="/login"/>
-              </Switch>
-            </div>
-          </main>
-          <Aside />
-        </div>
-        <Footer />
-      </div>
-    );
-  }
-}
 
-export default Full;
+const Full = appProps => (
+  <div className="app">
+    <Header />
+    <div className="app-body">
+      <Sidebar {...appProps} />
+      <main className="main">
+        <Breadcrumb />
+        <div className="container-fluid">
+          <Switch>
+            <Authenticated path="/dashboard" name="Dashboard" component={Dashboard} {...appProps}/>
+            <Authenticated path="/components/buttons" name="Buttons" component={Buttons} {...appProps}/>
+            <Authenticated path="/components/cards" name="Cards" component={Cards} {...appProps}/>
+            <Authenticated path="/components/forms" name="Forms" component={Forms} {...appProps}/>
+            <Authenticated path="/components/modals" name="Modals" component={Modals} {...appProps}/>
+            <Authenticated path="/components/social-buttons" name="Social Buttons" component={SocialButtons} {...appProps}/>
+            <Authenticated path="/components/switches" name="Swithces" component={Switches} {...appProps}/>
+            <Authenticated path="/components/tables" name="Tables" component={Tables} {...appProps}/>
+            <Authenticated path="/components/tabs" name="Tabs" component={Tabs} {...appProps}/>
+            <Authenticated path="/icons/font-awesome" name="Font Awesome" component={FontAwesome} {...appProps}/>
+            <Authenticated path="/icons/simple-line-icons" name="Simple Line Icons" component={SimpleLineIcons} {...appProps}/>
+            <Authenticated path="/widgets" name="Widgets" component={Widgets} {...appProps}/>
+            <Authenticated path="/charts" name="Charts" component={Charts} {...appProps}/>
+          </Switch>
+        </div>
+      </main>
+      <Aside />
+    </div>
+    <Footer />
+  </div>
+);
+
+Full.propTypes = {
+  loggingIn: PropTypes.bool,
+  authenticated: PropTypes.bool,
+};
+
+const composer = (props, onData) => {
+  const loggingIn = Meteor.loggingIn();
+  onData(null, {
+    loggingIn,
+    authenticated: !loggingIn && !!Meteor.userId(),
+  });
+};
+
+export default composeWithTracker(composer)(Full);
