@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { Accounts } from 'meteor/accounts-base';
 
 // Components
-import ModalDanger from '../../Components/ModalDanger/';
+import ModalDanger from '../Components/ModalDanger/';
 
 class ResetPassword extends Component {
   constructor(props){

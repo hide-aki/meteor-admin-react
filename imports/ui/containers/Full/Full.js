@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link, Switch, Route, Redirect } from 'react-router-dom'
-import Header from '../../components/Header/';
-import Sidebar from '../../components/Sidebar/';
-import Breadcrumb from '../../components/Breadcrumb/';
-import Aside from '../../components/Aside/';
-import Footer from '../../components/Footer/';
+import Header from '../../layout/Header/';
+import Sidebar from '../../layout/Sidebar/';
+import Breadcrumb from '../../layout/Breadcrumb/';
+import Aside from '../../layout/Aside/';
+import Footer from '../../layout/Footer/';
 
 import { composeWithTracker } from 'react-komposer';
 import { Meteor } from 'meteor/meteor';
-import Authenticated from '../../views/Pages/Authenticated';
+import Authenticated from '../../views/Authenticated';
 
 import Dashboard from '../../views/Dashboard/'
 import Charts from '../../views/Charts/'

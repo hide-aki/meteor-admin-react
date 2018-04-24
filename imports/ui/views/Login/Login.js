@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 // Components
-import ModalDanger from '../../Components/ModalDanger/'
+import ModalDanger from '../Components/ModalDanger/'
 
 class Login extends Component {
   constructor(props){

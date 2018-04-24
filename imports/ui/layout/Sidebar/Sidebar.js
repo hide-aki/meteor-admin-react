@@ -12,9 +12,9 @@ class Sidebar extends Component {
     return this.props.location.pathname.indexOf(routeName) > -1 ? 'nav-item nav-dropdown open' : 'nav-item nav-dropdown';
   }
 
-  // secondLevelActive(routeName) {
-  //   return this.props.location.pathname.indexOf(routeName) > -1 ? "nav nav-second-level collapse in" : "nav nav-second-level collapse";
-  // }
+  secondLevelActive(routeName) {
+    return this.props.location.pathname.indexOf(routeName) > -1 ? "nav nav-second-level collapse in" : "nav nav-second-level collapse";
+  }
 
   render() {
     return (
