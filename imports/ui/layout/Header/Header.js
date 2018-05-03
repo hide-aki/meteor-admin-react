@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Dropdown, DropdownMenu, DropdownItem } from 'reactstrap';
 import { Meteor } from 'meteor/meteor';
+import { NavLink } from 'react-router-dom'
 
 class Header extends Component {
 
@@ -11,7 +12,8 @@ class Header extends Component {
     this.toggle = this.toggle.bind(this);
     
     this.state = {
-      dropdownOpen: false
+      dropdownOpen: false,
+      name: Meteor.user().username,
     };
   }
 
@@ -79,7 +81,7 @@ class Header extends Component {
             <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
               <button onClick={this.toggle} className="nav-link dropdown-toggle" data-toggle="dropdown" type="button" aria-haspopup="true" aria-expanded={this.state.dropdownOpen}>
                 <img src={'img/avatars/6.jpg'} className="img-avatar" alt="admin@bootstrapmaster.com"/>
-                <span className="d-md-down-none">admin</span>
+                <span className="d-md-down-none">{this.state.name}</span>
               </button>
 
               <DropdownMenu className="dropdown-menu-right">
@@ -92,7 +94,10 @@ class Header extends Component {
 
                 <DropdownItem header className="text-center"><strong>Settings</strong></DropdownItem>
 
-                <DropdownItem><i className="fa fa-user"></i> Profile</DropdownItem>
+                <DropdownItem>
+                  <NavLink to={'/profile'} className="nav-link active"><i className="fa fa-user"></i> Profile </NavLink>
+                </DropdownItem>
+
                 <DropdownItem><i className="fa fa-wrench"></i> Settings</DropdownItem>
                 <DropdownItem><i className="fa fa-usd"></i> Payments<span className="badge badge-default">42</span></DropdownItem>
                 <DropdownItem><i className="fa fa-file"></i> Projects<span className="badge badge-primary">42</span></DropdownItem>

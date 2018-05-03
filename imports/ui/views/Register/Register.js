@@ -10,7 +10,7 @@ class Register extends Component {
     this.toggleShow = this.toggleShow.bind(this);
     
     this.state = {
-      name: '',
+      username: '',
       email: '',
       password: '',
       repeatPassword: '',
@@ -25,7 +25,7 @@ class Register extends Component {
     e.preventDefault();
     this.setState({['formSubmited']: true});
 
-    if(this.state.name.length === 0 || this.state.email.length === 0 || this.state.password.length === 0 || this.state.repeatPassword.length === 0) {
+    if(this.state.username.length === 0 || this.state.email.length === 0 || this.state.password.length === 0 || this.state.repeatPassword.length === 0) {
       this.setState({showError: true});
       return false;
     } else if(this.state.password !== this.state.repeatPassword) {
@@ -33,7 +33,7 @@ class Register extends Component {
       return false;
     }
 
-    Accounts.createUser({email: this.state.email, username: this.state.name, password: this.state.password}, (err) => {
+    Accounts.createUser({email: this.state.email, username: this.state.username, password: this.state.password}, (err) => {
       if(err){
         this.setState({
           registerFailure: true,
@@ -60,14 +60,14 @@ class Register extends Component {
   }
 
   render() {
-    let nameRequired = (this.state.name.length === 0 && this.state.formSubmited);
+    let usernameRequired = (this.state.username.length === 0 && this.state.formSubmited);
     let emailRequired = (this.state.email.length === 0 && this.state.formSubmited);
     let passwordRequired = (this.state.password.length === 0 && this.state.formSubmited);
     let repeatPasswordRequired = (this.state.repeatPassword.length === 0 && this.state.formSubmited);
     let registerFailure = (this.state.registerFailure && this.state.formSubmited);
 
     let divError;
-    if(nameRequired || emailRequired || passwordRequired || repeatPasswordRequired) {
+    if(usernameRequired || emailRequired || passwordRequired || repeatPasswordRequired) {
       divError = <ModalDanger type="danger" toggleShow={this.toggleShow} show={this.state.showError} title="Campos Obrigatórios" msg="Todos os campos são obrigatórios."/>
     } else if(this.state.password !== this.state.repeatPassword) {
       divError = <ModalDanger type="danger" toggleShow={this.toggleShow} show={this.state.showError} title="Validação" msg="Campo senha e confirmação de senha estão diferentes."/>
@@ -85,9 +85,9 @@ class Register extends Component {
                   {divError}
                   <h1>Registrar</h1>
                   <p className="text-muted">Crie sua conta</p>
-                  <div className={nameRequired ? "input-group mb-3 has-danger has-feedback" : "input-group mb-3"}>
+                  <div className={usernameRequired ? "input-group mb-3 has-danger has-feedback" : "input-group mb-3"}>
                     <span className="input-group-addon"><i className="icon-user"></i></span>
-                    <input type="text" name="name" value={this.state.name} onChange={(event) => this.handleInput(event)} className="form-control" placeholder="Nome completo"/>
+                    <input type="text" name="username" value={this.state.username} onChange={(event) => this.handleInput(event)} className="form-control" placeholder="Usuário"/>
                   </div>
                   <div className={emailRequired ? "input-group mb-3 has-danger has-feedback" : "input-group mb-3"}>
                     <span className="input-group-addon">@</span>

@@ -25,6 +25,8 @@ import Tabs from '../../views/Components/Tabs/'
 import FontAwesome from '../../views/Icons/FontAwesome/'
 import SimpleLineIcons from '../../views/Icons/SimpleLineIcons/'
 
+import Profile from '../../views/Profile/'
+
 
 const Full = appProps => (
   <div className="app">
@@ -48,6 +50,8 @@ const Full = appProps => (
             <Authenticated path="/icons/simple-line-icons" name="Simple Line Icons" component={SimpleLineIcons} {...appProps}/>
             <Authenticated path="/widgets" name="Widgets" component={Widgets} {...appProps}/>
             <Authenticated path="/charts" name="Charts" component={Charts} {...appProps}/>
+
+            <Authenticated path="/profile" name="Profile" component={Profile} {...appProps}/>
             <Redirect from="/" to="/login"/>
           </Switch>
         </div>
