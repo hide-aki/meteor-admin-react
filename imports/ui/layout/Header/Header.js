@@ -18,7 +18,10 @@ class Header extends Component {
   }
 
   componentWillMount() {
-    this.setState({name: Meteor.user().username});
+    if(Meteor.user()) {
+      this.setState({name: Meteor.user().username});
+    }
+    
   }
 
   logout(e) {
