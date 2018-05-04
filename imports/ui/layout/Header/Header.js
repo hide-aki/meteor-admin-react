@@ -13,8 +13,12 @@ class Header extends Component {
     
     this.state = {
       dropdownOpen: false,
-      name: Meteor.user().username,
+      name: '',
     };
+  }
+
+  componentWillMount() {
+    this.setState({name: Meteor.user().username});
   }
 
   logout(e) {
